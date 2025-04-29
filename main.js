@@ -75,24 +75,20 @@ function configRoulette() {
     items[0].classList.add('unique')
   }
 }
-
 class App {
   static get getData() {
     const db = JSON.parse(localStorage.getItem('data'))
     return db.save
   }
-
   static setData(list) {
     localStorage.setItem('data', JSON.stringify({ save: list }))
     return this
   }
-
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (App.getData === undefined || App.getData === null) {
+  if (!localStorage.getItem('data')) {
     App.setData(['Sim', 'Não'])
   }
-
   renderItems(App.getData)
 })
